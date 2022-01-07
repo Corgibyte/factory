@@ -101,3 +101,28 @@ ul {
 select {
   margin:0.25rem;
 }
+
+#nav-ul {
+  display:flex;
+}
+
+#last-nav-li {
+  margin-right: auto;
+}
+
+#nav-ul li {
+  padding-right:0.5rem;
+}
+
+#nav-ul li a {
+  text-decoration: none;
+  font-size:larger;
+}
+
+#nav-ul li a:hover {
+  border-bottom:0.25rem solid var(--aurora-02);
+}
+
+nav {
+  padding-top:0.5rem;
+}
