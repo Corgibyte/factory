@@ -1,0 +1,17 @@
+@model Factory.Models.Machine
+
+<h2>Add engineer certified to maintain machine</h2>
+
+<h4>Add engineer certification for: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+
+  @Html.Label("Select engineer")
+  @Html.DropDownList("EngineerId")
+
+  <button class="btn btn-input" type="submit">Add certification</button>
+}
+
+@Html.ActionLink($"Back to machine {Model.Name}", "Details", new { id = Model.MachineId }, new {@role="button", @class="btn"})
