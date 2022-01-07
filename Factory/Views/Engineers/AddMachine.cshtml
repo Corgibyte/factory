@@ -4,14 +4,23 @@
 
 <h4>Add machine certification for: @Html.DisplayFor(model => model.Name)</h4>
 
-@using (Html.BeginForm())
+@if (ViewBag.MachineCount > 0)
 {
-  @Html.HiddenFor(model => model.EngineerId)
+  <div class="inner-pane">
+  @using (Html.BeginForm())
+    {
+      @Html.HiddenFor(model => model.EngineerId)
 
-  @Html.Label("Select machine")
-  @Html.DropDownList("MachineId")
+      @Html.Label("Select machine")
+      @Html.DropDownList("MachineId")
 
-  <button class="btn btn-input" type="submit">Add certification</button>
+      <button class="btn btn-input" type="submit">Add certification</button>
+    }
+  </div>
+}
+else
+{
+  <h6>No eligible machines to certify</h6>
 }
 
-@Html.ActionLink($"Back to engineer {Model.Name}", "Details", new { id = Model.EngineerId }, new {@role="button", @class="btn"})
+@Html.ActionLink($"Back to {Model.Name}", "Details", new { id = Model.EngineerId }, new {@role="button", @class="btn"})

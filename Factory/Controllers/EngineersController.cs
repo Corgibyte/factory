@@ -63,6 +63,7 @@ namespace Factory.Controllers
       var query = _db.Machines.Include(machine => machine.JoinEntities)
         .ThenInclude(join => join.Engineer)
         .Where(machine => !machine.JoinEntities.Any(join => join.EngineerId == id));
+      ViewBag.MachineCount = query.Count();
       ViewBag.MachineId = new SelectList(query, "MachineId", "Name");
       return View(thisEngineer);
     }
