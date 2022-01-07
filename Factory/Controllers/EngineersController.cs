@@ -60,23 +60,16 @@ namespace Factory.Controllers
     public ActionResult AddMachine(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engr => engr.EngineerId == id);
-      var certifiedMachines = _db.Machines.Include(machine => machine.JoinEntities)
+      var query = _db.Machines.Include(machine => machine.JoinEntities)
         .ThenInclude(join => join.Engineer)
-        .SelectMany(machine => machine.JoinEntities, (machine, engineerMachine) => new { machine, engineerMachine })
-        .Where(machineAndJoin => machineAndJoin.engineerMachine.EngineerId == id)
-        .Select(machineAndJoin => machineAndJoin.machine);
-      var uncertifiedMachines = _db.Machines.Include(machine => machine.JoinEntities)
-        .ThenInclude(join => join.Engineer)
-        .Except(certifiedMachines)
-        .ToList();
-      ViewBag.MachineId = new SelectList(uncertifiedMachines, "MachineId", "Name");
+        .Where(machine => !machine.JoinEntities.Any(join => join.EngineerId == id));
+      ViewBag.MachineId = new SelectList(query, "MachineId", "Name");
       return View(thisEngineer);
     }
 
     [HttpPost]
     public ActionResult AddMachine(Engineer engineer, int machineId)
     {
-      //bool alreadyExists = _db.EngineerMachine.Any(engineerMachine => engineerMachine.EngineerId == engineer.EngineerId && engineerMachine.MachineId == machineId);
       if (machineId != 0)
       {
         _db.EngineerMachine.Add(new EngineerMachine() { MachineId = machineId, EngineerId = engineer.EngineerId });
