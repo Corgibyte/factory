@@ -84,7 +84,7 @@ namespace Factory.Controllers
       EngineerMachine joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = joinEntry.EngineerId });
     }
 
     public ActionResult Delete(int id)
