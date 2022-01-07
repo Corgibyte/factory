@@ -1,4 +1,49 @@
+@using Factory.Models;
+
 <h1>Factory Manager</h1>
 
-@Html.ActionLink("Engineers", "Index", "Engineers", new { }, new {@role="button", @class="button"})
-@Html.ActionLink("Machines", "Index", "Machines", new { }, new {@role="button", @class="button"})
+<div class="row">
+  <div class="col-lg-6">
+    <div class="inner-pane">
+      <h3>Machines</h3>
+
+      <div class="deep-pane">
+        @if (((List<Factory.Models.Machine>)ViewData["machines"]).Count == 0)
+        {
+          <h6>No current machines</h6>
+        }
+        else
+        {
+          <div class="btn-group-vertical" role="group">
+            @foreach (Machine machine in (List<Factory.Models.Machine>)ViewData["machines"])
+            {
+              @Html.ActionLink($"{machine.Name}", "Details", "Machines", new { id = machine.MachineId }, new {@role="button", @class="btn"})
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="inner-pane">
+      <h3>Engineers</h3>
+
+      <div class="deep-pane">
+        @if (((List<Factory.Models.Engineer>)ViewData["engineers"]).Count == 0)
+        {
+          <h6>No current engineers</h6>
+        }
+        else
+        {
+          <div class="btn-group-vertical" role="group">
+            @foreach (Engineer engineer in (List<Factory.Models.Engineer>)ViewData["engineers"])
+            {
+              @Html.ActionLink($"{engineer.Name}", "Details", "Engineers", new { id = engineer.EngineerId }, new {@role="button", @class="btn"})
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
