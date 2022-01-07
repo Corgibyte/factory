@@ -3,27 +3,28 @@
 <h2>Engineer Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-<hr />
 
-@if (@Model.JoinEntities.Count == 0)
-{
-  <p>This engineer is not certified to maintain any machines</p>
-}
-else
-{
-  <h4>Machines engineer is certified to maintain:</h4>
-  <ul>
-  @foreach (var join in Model.JoinEntities)
-    {
-      <li>@join.Machine.Name</li>
-      @using (Html.BeginForm("DeleteMachine", "Engineers"))
+<div class="inner-pane">
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <p>This engineer is not certified to maintain any machines</p>
+  }
+  else
+  {
+    <h4>Machines engineer is certified to maintain:</h4>
+    <ul>
+      @foreach (var join in Model.JoinEntities)
       {
-        @Html.Hidden("joinId", @join.EngineerMachineId)
-        <button type="submit" class="btn btn-input">Delete certification</button>
+        <li>@join.Machine.Name</li>
+        @using (Html.BeginForm("DeleteMachine", "Engineers"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          <button type="submit" class="btn btn-input">Delete certification</button>
+        }
       }
-    }
-  </ul>
-}
+    </ul>
+  }
+</div>
 
 <div class="btn-group-vertical" role="group">
   @Html.ActionLink("Add machine certification", "AddMachine", new { id = Model.EngineerId }, new {@role="button", @class="btn"})
