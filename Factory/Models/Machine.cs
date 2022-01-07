@@ -7,10 +7,12 @@ namespace Factory.Models
     public int MachineId { get; set; }
     public string Name { get; set; }
     public virtual ICollection<EngineerMachine> JoinEntities { get; set; }
+    public MachineStatus Status { get; set; }
 
     public Machine()
     {
       this.JoinEntities = new HashSet<EngineerMachine>();
+      Status = MachineStatus.Up;
     }
   }
 }

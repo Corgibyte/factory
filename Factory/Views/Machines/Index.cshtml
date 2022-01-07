@@ -12,7 +12,7 @@
   <div class="btn-group-vertical" role="group">
     @foreach (Machine machine in Model)
     {
-      @Html.ActionLink($"{machine.Name}", "Details", new { id = machine.MachineId }, new { @role="button", @class="btn" })
+      <a href="/Machines/Details/@machine.MachineId" role="button" class="btn"><span class="status-@machine.Status">●</span>@machine.Name</a>
     }
   </div>
 </div>

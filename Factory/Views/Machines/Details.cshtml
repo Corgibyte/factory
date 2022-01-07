@@ -1,8 +1,27 @@
+@using Factory.Models;
 @model Factory.Models.Machine
 
 <h2>Machine Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h4>Status:
+  @if (Model.Status == MachineStatus.Up)
+  {
+    <span class="status-Up">@Html.DisplayFor(model => model.Status)</span>
+  }
+  else if (Model.Status == MachineStatus.Down)
+  {
+    <span class="status-Down">@Html.DisplayFor(model => model.Status)</span>
+  }
+  else if (Model.Status == MachineStatus.Maintenance)
+  {
+    <span class="status-Maintenance">@Html.DisplayFor(model => model.Status)</span>
+  }
+  else if (Model.Status == MachineStatus.Repair)
+  {
+    <span class="status-Repair">@Html.DisplayFor(model => model.Status)</span>
+  }
+</h4>
 
 <div class="inner-pane">
   @if (@Model.JoinEntities.Count == 0)
