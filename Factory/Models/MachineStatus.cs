@@ -4,7 +4,7 @@ namespace Factory.Models
 {
   public enum MachineStatus
   {
-    [Display(Name = "Machine Operational")]
+    [Display(Name = "Machine operational")]
     Up,
 
     [Display(Name = "Machine not operational")]
