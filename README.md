@@ -4,7 +4,7 @@
 
 By Hannah Young
 
-A simple web application to allow a salon owner to manage their stylists and clients.
+A simple web application to allow Dr. Sillystringz, the acclaimed sillygineer, to manage their factory's machines and engineers.
 
 ### Technologies Used
 
