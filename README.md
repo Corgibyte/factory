@@ -41,7 +41,7 @@ This is a web application that showcases my ability to develop a robust ASP.NET 
   }
 }
 ```
-6. Back in the terminal, in the HairSalon directory build the project: `dotnet restore`
+6. Back in the terminal, in the Factory directory build the project: `dotnet restore`
 7. Create database from migration data: `dotnet ef database update`
 8. Run project: `dotnet run`
 9. Use browser to navigate to `localhost:5000`
